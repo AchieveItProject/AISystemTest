@@ -1,8 +1,8 @@
-<p align="center"><img style="background:grey" width="100" src="https://github.com/AchieveItProject/AISystemTest/images/logo.png"/></p>
+<p align="center"><img style="background:grey" width="100" src="https://github.com/AchieveItProject/AISystemTest/tree/master/images/icon.png"/></p>
 
 <h2 align="center">AchieveIt - System Test</h2>
 
-System Test for the project manangement system for April Technology Company. 
+<p align="center">System Test for the project manangement system for April Technology Company. </p>
 
 ## Status
 
