@@ -1,6 +1,6 @@
 # This workflow will build a Java project with Maven
 
-name: Java CI with Maven
+name: Execute System Test
 
 on:
   push:
