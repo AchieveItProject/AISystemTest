@@ -1,4 +1,4 @@
-<p align="center"><img style="background:grey" width="100" src="https://github.com/AchieveItProject/AISystemTest/tree/master/images/icon.png"/></p>
+<p align="center"><img width="300" src="https://github.com/AchieveItProject/AISystemTest/blob/master/images/icon.png" alt="AchieveIt logo"/></p>
 
 <h2 align="center">AchieveIt - System Test</h2>
 
