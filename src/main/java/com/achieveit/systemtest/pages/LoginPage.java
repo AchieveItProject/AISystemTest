@@ -1,13 +1,13 @@
 package com.achieveit.systemtest.pages;
 
-import com.achieveit.systemtest.Constant;
+import com.achieveit.systemtest.constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.Set;
 
-import static com.achieveit.systemtest.DriverSingleton.setNewPageHandler;
-import static com.achieveit.systemtest.DriverSingleton.waitDriver;
+import static com.achieveit.systemtest.drivers.DriverSingleton.setNewPageHandler;
+import static com.achieveit.systemtest.drivers.DriverSingleton.waitDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 

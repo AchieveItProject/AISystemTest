@@ -4,12 +4,12 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.Map;
 
-import static com.achieveit.systemtest.DriverSingleton.*;
+import static com.achieveit.systemtest.drivers.DriverSingleton.*;
 
 public interface Page {
     WebDriver webDriver = getWebDriver();
     Map<String, Object> vars = getVars();
-      Map<String,String> handlers=getHandlers();
+    Map<String,String> handlers=getHandlers();
 
 
      default Page navigateTo(String pageName){

@@ -1,32 +1,35 @@
-package com.achieveit.systemtest;
+package com.achieveit.systemtest.drivers;
 
+import com.achieveit.systemtest.constant.Constant;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 public class DriverSingleton {
-   private static WebDriver webDriver;
-  private static  Map<String,Object> vars;
-    private static  Map<String,String> handlers;
+    static WebDriver webDriver;
+    static  Map<String,Object> vars;
+    static  Map<String,String> handlers;
+
+   static DriverStrategy driverStrategy;
+   public static void setDriverStrategy(Class m){
+       try {
+           driverStrategy = (DriverStrategy) m.newInstance();
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+   }
 
     public DriverSingleton() {
     }
 
-    public static WebDriver getWebDriver() {
-        if(webDriver==null){
-            System.setProperty("webdriver.chrome.driver",Constant.chromeDriverPosition);
-            webDriver=new ChromeDriver();
-            // driver = new FirefoxDriver();   //Firefox浏览器
-//    WebDriver driver = new EdgeDriver();      //Edge浏览器
-//    WebDriver driver = new OperaDriver();     //Opera浏览器
-        }
-        return webDriver;
+    public static WebDriver getWebDriver(){
+       return  driverStrategy.getWebDriver();
     }
+
+
     public static Map<String, Object> getVars(){
         if(vars==null){
             vars=new HashMap<String, Object>();
