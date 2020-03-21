@@ -10,7 +10,6 @@
 <img src="https://img.shields.io/badge/deploy-success-brightgreen.svg" alt="Build Status">  
 <img src="https://img.shields.io/badge/version-0.1-green.svg" alt="Version">
 <img src="https://img.shields.io/badge/license-MIT-red.svg" alt="License">
-<img src="https://github.com/AchieveItProject/AISystemTest/workflows/Execute%20System%20Test/badge.svg" alt="Execute System Test">
 </div>
 
 
