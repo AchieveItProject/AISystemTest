@@ -12,11 +12,8 @@ public class ChromeDriverStrategy implements DriverStrategy {
 
     public WebDriver getWebDriver(){
         if(webDriver==null){
-//            System.setProperty("webdriver.chrome.driver", Constant.chromeDriverPosition);
+            System.setProperty("webdriver.chrome.driver", Constant.chromeDriverPosition);
             webDriver=new org.openqa.selenium.chrome.ChromeDriver();
-            // driver = new FirefoxDriver();   //Firefox浏览器
-//    WebDriver driver = new EdgeDriver();      //Edge浏览器
-//    WebDriver driver = new OperaDriver();     //Opera浏览器
         }
         return webDriver;
     } ;
