@@ -7,6 +7,9 @@
     <groupId>com.achieveit</groupId>
     <artifactId>system-test</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <testng.file>testng-chrome.xml</testng.file>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -15,6 +18,15 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${testng.file}</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
@@ -31,6 +43,12 @@
         <artifactId>selenium-java</artifactId>
         <version>3.4.0</version>
     </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.8</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 

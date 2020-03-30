@@ -4,6 +4,10 @@ import com.achieveit.systemtest.constant.Constant;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.URL;
 
 import static com.achieveit.systemtest.drivers.DriverSingleton.webDriver;
 
@@ -13,8 +17,12 @@ public class FirefoxDriverStrategy implements DriverStrategy {
 
     public WebDriver getWebDriver(){
         if(webDriver==null){
-            System.setProperty("webdriver.firefox.driver", Constant.firefoxDriverPosition);
-            webDriver= new FirefoxDriver();
+//            System.setProperty("webdriver.gecko.driver", Constant.firefoxDriverPosition);
+            try {
+                webDriver = new RemoteWebDriver(new URL(Constant.baseTestUrl), DesiredCapabilities.firefox());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         }
         return webDriver;

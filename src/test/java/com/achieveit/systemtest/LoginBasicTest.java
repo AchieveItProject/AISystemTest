@@ -7,32 +7,44 @@ import com.achieveit.systemtest.drivers.OperaDriverStrategy;
 import com.achieveit.systemtest.pages.LoginPage;
 import com.achieveit.systemtest.pages.Page;
 import com.achieveit.systemtest.pages.WelcomePage;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class LoginBasicTest extends BaseTest{
-
-
+public class LoginBasicTest extends BaseTest {
 
   LoginPage loginPage;
-  @Before
-  public void pageInit(){
-    loginPage=new LoginPage();
+
+//    @DataProvider(name = "test2",parallel = true)
+//    public static Object[][] parallel2Test(){
+//        return new Object[][]{
+//                {ChromeDriverStrategy.class},
+//                {ChromeDriverStrategy.class}};
+//    }
+
+
+
+  @BeforeMethod
+  public void pageInit() {
+    loginPage = new LoginPage();
   }
-@Test
+
+  @Test
   public void loginbasictest() {
-    loginPage.goLoginPage("loginPage").inputUsernameDialog("admin").inputPasswordDialog("123456")
-            .clickLoginButton("newPage");
-   WelcomePage p=new WelcomePage( (Page)loginPage).verifyTitleOnPageClassName();
-
-
+    try {
+      loginPage.goLoginPage("loginPage").inputUsernameDialog("fjm").inputPasswordDialog("123")
+              .clickLoginButton("newPage");
+      WelcomePage p = new WelcomePage((Page) loginPage).verifyTitleOnPageClassName();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
-  @After
-  public  void pageDestroy(){
+
+
+  @AfterMethod
+  public void pageDestroy() {
     loginPage.closePage("loginPage");
   }
 }
