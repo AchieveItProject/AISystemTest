@@ -11,18 +11,19 @@ import com.achieveit.systemtest.pages.WelcomePage;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginBasicTest extends BaseTest {
 
   LoginPage loginPage;
 
-//    @DataProvider(name = "test2",parallel = true)
-//    public static Object[][] parallel2Test(){
-//        return new Object[][]{
-//                {ChromeDriverStrategy.class},
-//                {ChromeDriverStrategy.class}};
-//    }
+    @DataProvider(name = "login",parallel = false)
+    public static Object[][] parallel2Test(){
+        return new Object[][]{
+                {"fjm","123"},
+                {"br","123"}};
+    }
 
 
 
@@ -31,15 +32,13 @@ public class LoginBasicTest extends BaseTest {
     loginPage = new LoginPage();
   }
 
-  @Test
-  public void loginbasictest() {
-    try {
-      loginPage.goLoginPage("loginPage").inputUsernameDialog("fjm").inputPasswordDialog("123")
-              .clickLoginButton("newPage");
-      WelcomePage p = new WelcomePage((Page) loginPage).verifyTitleOnPageClassName();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+  @Test(dataProvider = "login")
+  public void loginbasictest(String username, String password) {
+
+    WelcomePage p =  loginPage.goLoginPage("loginPage").inputUsernameDialog(username).inputPasswordDialog(password)
+            .clickLoginButton("newPage");
+    p.verifyTitleOnPageClassName();
+
   }
 
 

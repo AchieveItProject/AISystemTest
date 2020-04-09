@@ -4,6 +4,7 @@ import com.achieveit.systemtest.constant.Constant;
 import com.achieveit.systemtest.pages.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Set;
 public class DriverSingleton {
     static WebDriver webDriver;
     static Map<String, String> handlers;
+    static WebDriverWait wait ;
 
     static DriverStrategy driverStrategy;
 
@@ -54,6 +56,12 @@ public class DriverSingleton {
         }
         return handlers;
     }
+    public static WebDriverWait getWebDriverWait(){
+        if(wait==null){
+           return new WebDriverWait(webDriver,500);
+        }
+        return wait;
+    }
 
     public static void setNewPageHandler(Set<String> oldHandlers, String pageName) {
         Set<String> whnow = webDriver.getWindowHandles();
@@ -75,6 +83,13 @@ public class DriverSingleton {
     public static void waitDriver(int timeout) {
         try {
 //            Thread.sleep(timeout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void pauseOperation(int timeout) {
+        try {
+            Thread.sleep(timeout);
         } catch (Exception e) {
             e.printStackTrace();
         }

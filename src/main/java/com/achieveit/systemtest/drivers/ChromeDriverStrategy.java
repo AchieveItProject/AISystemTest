@@ -24,12 +24,18 @@ public class ChromeDriverStrategy implements DriverStrategy {
             synchronized (DriverSingleton.class){
                 if(webDriver==null){
                     try {
+//                        System.setProperty("webdriver.chrome.driver","D:/Software Development Practice/driver/chromedriver.exe");
+//                        webDriver=new ChromeDriver();
+
                         ChromeOptions chromeOptions=new ChromeOptions();
-//                      chromeOptions.addArguments("--headless");
+//                        chromeOptions.addArguments("start-maximized");
+//                        chromeOptions.addArguments("--headless");
+//                        chromeOptions.addArguments("--window-size=1024,1024");
                         DesiredCapabilities desiredCapabilities=DesiredCapabilities.chrome();
-                        desiredCapabilities.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
+//                        desiredCapabilities.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
                         webDriver = new RemoteWebDriver(new URL(Constant.baseTestUrl), desiredCapabilities);
-                        webDriver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+                        webDriver.manage().timeouts().implicitlyWait(100, TimeUnit.MILLISECONDS);
+
                     }catch(Exception e){
                         e.printStackTrace();
                     }

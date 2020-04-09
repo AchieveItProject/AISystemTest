@@ -1,17 +1,19 @@
 package com.achieveit.systemtest.pages;
 
 import com.achieveit.systemtest.constant.Constant;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
 
 import static com.achieveit.systemtest.drivers.DriverSingleton.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.openqa.selenium.remote.ErrorCodes.TIMEOUT;
 
 public class LoginPage implements Page {
     @FindBy(className = "loginInfoInput1")
@@ -22,19 +24,24 @@ public class LoginPage implements Page {
     private WebElement passwordDialog;
 
     public LoginPage goLoginPage(String pageName) {
-        webDriver.get(Constant.baseUrl + "login");
+        String url=Constant.baseUrl;
+        //+ "login";
+//        System.out.println("window.open('"+ url+"')");
+//        ( (JavascriptExecutor) webDriver).executeScript("window.open()");
+webDriver.get(url);
+        wait.until( wd -> wd.getTitle().equals("登录页") );
         PageFactory.initElements(webDriver, this);
         putHandler(pageName, webDriver.getWindowHandle());
-        assertThat(webDriver.getTitle(), is("AchieveIt软件项目管理"));
         return this;
     }
 
-    public LoginPage clickLoginButton(String newPageName) {
+    public WelcomePage clickLoginButton(String newPageName) {
 //        Set<String> handlers=webDriver.getWindowHandles();
         webDriver.findElement(By.className("loginConfirm-text")).click();
-        waitDriver(1000);
+        System.out.println(webDriver.getTitle());
+        wait.until( wd -> wd.getTitle().equals("系统首页") );
 //        setNewPageHandler(handlers,newPageName,5000);
-        return this;
+        return new WelcomePage((Page) this);
     }
 
     public LoginPage inputUsernameDialog(String username) {
