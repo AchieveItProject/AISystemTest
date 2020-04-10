@@ -7,13 +7,13 @@ import java.util.List;
 
 import static com.achieveit.systemtest.drivers.DriverSingleton.pauseOperation;
 
-public class FunctionCreatePage extends FunctionPage {
+public class SubFunctionCreatePage extends FunctionPage {
 
     private WebElement sure;
     private WebElement cancel;
     private WebElement functionNameInput;
     private WebElement functionPerson;
-    public FunctionCreatePage(FunctionPage p) {
+    public SubFunctionCreatePage(FunctionPage p) {
         super(p);
         pauseOperation(500);
         WebElement funcDialog= findFuncDialog();
@@ -23,10 +23,14 @@ public class FunctionCreatePage extends FunctionPage {
 
     public WebElement findFuncDialog(){
         List<WebElement> list=webDriver.findElement(By.xpath("/html/body")).findElements(By.tagName("div"));
+        int c=0;
         for (int i=0;i<list.size();i++) {
             WebElement e=list.get(i);
-            if (  e.getAttribute("aria-label") !=null&&e.getAttribute("aria-label").equals( "新增功能"))
-                return e;
+            if (  e.getAttribute("aria-label") !=null&&e.getAttribute("aria-label").equals( "新增功能")) {
+                c++;
+                if(c==2)                return e;
+
+            }
         }
         return null;
     }
@@ -36,17 +40,18 @@ public class FunctionCreatePage extends FunctionPage {
             functionNameInput=inputs.get(1);
             functionPerson=inputs.get(2);
 
+
         List<WebElement> list=dialog.findElements(By.tagName("button"));
         cancel= list.get(1);
         sure=list.get(2);
 
     }
-    public FunctionCreatePage inputFuncName(String name){
+    public SubFunctionCreatePage inputFuncName(String name){
         functionNameInput.clear();
         functionNameInput.sendKeys(name);
         return this;
     }
-    public FunctionCreatePage inputFuncPerson(String name){
+    public SubFunctionCreatePage inputFuncPerson(String name){
         functionPerson.clear();
         functionPerson.sendKeys(name);
         return this;

@@ -54,9 +54,9 @@ public class FunctionWatchPage extends FunctionPage {
         WebElement dialog= findFuncDialog();
 
         List<WebElement> inputs=dialog.findElements(By.tagName("input"));
-        assertThat( inputs.get(0).getText(), is(p.getFunctionId()));
-        assertThat(inputs.get(1).getText(),is(p.getName()));
-        assertThat(inputs.get(2).getText(),is(p.getPeople()));
+        assertThat( inputs.get(0).getAttribute("value")  , is(p.getFunctionId()));
+        assertThat(inputs.get(1).getAttribute("value")  ,is(p.getName()));
+        assertThat(inputs.get(2).getAttribute("value")  ,is(p.getPeople()));
         return this;
     }
 }

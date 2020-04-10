@@ -32,5 +32,10 @@ public class ProjectDetailPage implements Page{
         pauseOperation(500);
         return new FunctionPage(this);
     }
+    public MemberPage enterMemberTab(){
+        memberTab.click();
+        pauseOperation(500);
+        return new MemberPage(this);
+    }
 
 }
