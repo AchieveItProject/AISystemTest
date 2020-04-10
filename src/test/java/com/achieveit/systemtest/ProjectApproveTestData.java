@@ -11,22 +11,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class ProjectApproveTestData {
-    @DataProvider(name = "projectInfo", parallel = false)
-    public static Object[][] parallel2Test() {
-        int itemCount = 1;
-        Faker faker = new Faker(Locale.ENGLISH);
-        faker.app().name();
-        Object[][] ret = new Object[itemCount][1];
-        for (int i = 0; i < itemCount; i++) {
-            String customerInfo = faker.company().name();
-            String field = faker.company().profession();
-            ProjectInfo projectInfo = new ProjectInfo(faker.app().name(), "c", customerInfo,
-                    faker.gameOfThrones().house(), faker.matz().quote(), faker.gameOfThrones().house(),
-                    field, "2020-07-01 12:00:00","2020-08-01 12:00:00");
-            ret[i][0] = projectInfo;
-        }
-        return ret;
-    }
+
 
     // Not same as "9" since checkFunction will fail (same with old Value)
     @DataProvider

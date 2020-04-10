@@ -25,7 +25,7 @@ public class ProjectInfoTest extends BaseTest {
 
     ProjectCreateDialogPage createProjectDialogPage;
     ProjectManagementPage projectManagementPage;
-    LoginPage loginPage;
+
 
 
     @BeforeMethod

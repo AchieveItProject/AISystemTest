@@ -27,8 +27,8 @@ public class AssignQAPage extends ProjectManagementPage {
 
     public WebElement findAssignQADialog(){
         List<WebElement> list=webDriver.findElement(By.xpath("/html/body")).findElements(By.tagName("div"));
-        for (WebElement e :
-                list) {
+        for (int i=0;i<list.size();i++) {
+            WebElement e=list.get(i);
             if (  e.getAttribute("aria-label") !=null&&e.getAttribute("aria-label").equals( "分配QA")) return e;
         }
         return null;

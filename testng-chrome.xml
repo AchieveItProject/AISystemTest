@@ -8,7 +8,10 @@
             <!--<class name="com.achieveit.systemtest.LoginBasicTest"/>-->
             <!--<class name="com.achieveit.systemtest.ProjectInfoTest"/>-->
             <!--<class name="com.achieveit.systemtest.ProjectSearchTest"/>-->
-            <class name="com.achieveit.systemtest.ProjectApproveTest"/>
+            <!--<class name="com.achieveit.systemtest.ProjectApproveTest"/>-->
+            <!--<class name="com.achieveit.systemtest.AchieveInfoTest"/>-->
+            <!--<class name="com.achieveit.systemtest.StatusTest"/>-->
+            <class name="com.achieveit.systemtest.FunctionTest"/>
         </classes>
     </test>
 

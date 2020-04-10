@@ -20,38 +20,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ProjectApproveTest extends BaseTest {
     ProjectCreateDialogPage createProjectDialogPage;
     ProjectManagementPage projectManagementPage;
-    LoginPage loginPage;
-    WelcomePage welcomePage;
 
 
 
-    public void loginAsPM(String username,String password) {
-        loginPage = new LoginPage();
-        welcomePage= loginPage.goLoginPage("loginPage").inputUsernameDialog(username).inputPasswordDialog(password)
-                .clickLoginButton("newPage");
-        welcomePage.verifyTitleOnPageClassName();
 
-    }
-    public void loginAsLeader(String username,String password) {
-        loginPage = new LoginPage();
-        welcomePage= loginPage.goLoginPage("loginPage").inputUsernameDialog(username).inputPasswordDialog(password)
-                .clickLoginButton("newPage");
-        welcomePage.verifyTitleOnPageClassName();
-
-    }
-    public void login(String username,String password) {
-        loginPage = new LoginPage();
-        welcomePage= loginPage.goLoginPage("loginPage").inputUsernameDialog(username).inputPasswordDialog(password)
-                .clickLoginButton("newPage");
-        welcomePage.verifyTitleOnPageClassName();
-
-    }
 
     ProjectInfo projectInfo;
     @Test( dataProvider = "projectInfo", dataProviderClass = ProjectApproveTestData.class,priority = 1)
     public void createProject(ProjectInfo projectInfo) {
         this.projectInfo=projectInfo;
-        loginAsPM("fjm","123");
+        login("fjm","123","PM");
         projectManagementPage = welcomePage.selectProjectManagementMenu();
         createProjectDialogPage = projectManagementPage.clickNewProjectButton();
         createProjectDialogPage.fillProjectInfo(projectInfo).submitProject();
@@ -63,7 +41,7 @@ public class ProjectApproveTest extends BaseTest {
     }
     @Test( priority = 2)
     public void approveProject() {
-        loginAsLeader("c","123");
+        login("c","123","Leader");
         projectManagementPage= welcomePage.selectProjectManagementMenu();
         List<WebElement> e=projectManagementPage.selectListItem((line, lineExt)->line.findElements(By.tagName("td")).get(2).findElement(By.tagName("div")).getText().equals(projectInfo.getId()));
         projectManagementPage.clickApplyStatusButtonByLeader(e.get(1)).clickApprovalButton().clickMakeSureButton();
@@ -76,7 +54,7 @@ public class ProjectApproveTest extends BaseTest {
     @Test( priority = 3,enabled=false)
     public void checkProjectStatusChangeIsUnavailable(){
 
-        loginAsPM("fjm","123");
+        login("fjm","123","PM");
         projectManagementPage= welcomePage.selectProjectManagementMenu();
         List<WebElement> e=projectManagementPage.selectListItem((line, lineExt)->line.findElements(By.tagName("td")).get(2).findElement(By.tagName("div")).getText().equals(projectInfo.getId()));
        try {
@@ -176,7 +154,7 @@ public class ProjectApproveTest extends BaseTest {
     @Test( priority = 7)
     public void statusChangeToInProgress(){
 
-        loginAsPM("fjm","123");
+        login("fjm","123","PM");
         projectManagementPage= welcomePage.selectProjectManagementMenu();
         List<WebElement> e=projectManagementPage.selectListItem((line, lineExt)->line.findElements(By.tagName("td")).get(2).findElement(By.tagName("div")).getText().equals(projectInfo.getId()));
         projectManagementPage.clickApprovalStatusButtonByPM(e.get(1)).clickMakeSureButton();

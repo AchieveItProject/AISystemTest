@@ -1,6 +1,8 @@
 package com.achieveit.systemtest;
 
 import com.achieveit.systemtest.drivers.*;
+import com.achieveit.systemtest.pages.LoginPage;
+import com.achieveit.systemtest.pages.WelcomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,13 +24,24 @@ public class BaseTest {
 //    public static Class webDriverClass = ChromeDriverStrategy.class;
 
 //    public static WebDriver webDriver;
-
+LoginPage loginPage;
+    WelcomePage welcomePage;
     @Parameters("browser")
     @BeforeSuite
     public  void init2(String browser) {
         setDriverStrategy(browser);
     }
+    public void login(String username,String password) {
+        loginPage = new LoginPage();
+        welcomePage= loginPage.goLoginPage("loginPage").inputUsernameDialog(username).inputPasswordDialog(password)
+                .clickLoginButton("newPage");
+        welcomePage.verifyTitleOnPageClassName();
 
+    }
+    public void login(String username,String password, String role) {
+        login(username,password);
+
+    }
     @AfterSuite
     public  void quit() {
         getWebDriver().quit();

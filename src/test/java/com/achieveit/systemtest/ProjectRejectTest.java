@@ -17,8 +17,7 @@ public class ProjectRejectTest extends BaseTest{
 
     ProjectCreateDialogPage createProjectDialogPage;
     ProjectManagementPage projectManagementPage;
-    LoginPage loginPage;
-    WelcomePage welcomePage;
+
 
 
 

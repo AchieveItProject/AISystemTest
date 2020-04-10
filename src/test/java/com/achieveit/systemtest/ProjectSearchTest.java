@@ -12,7 +12,7 @@ import static com.achieveit.systemtest.drivers.DriverSingleton.getWebDriver;
 
 public class ProjectSearchTest extends BaseTest{
     ProjectManagementPage projectManagementPage;
-    LoginPage loginPage;
+
     @BeforeMethod
     public void init() {
         loginPage = new LoginPage();

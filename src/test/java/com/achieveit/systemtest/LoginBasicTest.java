@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class LoginBasicTest extends BaseTest {
 
-  LoginPage loginPage;
+
 
     @DataProvider(name = "login",parallel = false)
     public static Object[][] parallel2Test(){
