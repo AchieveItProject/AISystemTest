@@ -1,9 +1,6 @@
 <p align="center"><img width="300" src="https://github.com/AchieveItProject/AISystemTest/blob/master/images/icon.png" alt="AchieveIt logo"/></p>
-
 <h2 align="center">AchieveIt - System Test</h2>
-
 <p align="center">System Test for the project manangement system for April Technology Company. </p>
-
 ## Status
 
 <div style="float:left;"> 
@@ -24,12 +21,11 @@ Warranty is supported according to Github. If bugs are reported, fixing and stre
 
 ## Technology Stack
 
-Java + Maven + Selenium + JUnit + Mockito (reports will be supported in the future)
+Java + Maven + Selenium + TestNG + AutoIt
 
 ## Deployment
 
-1. Download the source code and run.
-2. It will support the automatic test in the future.
+Download the source code and run. Report can be seen in results-by-idea.html
 
 ## Copyright
 
