@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="none" thread-count="2">
-    <parameter name="browser" value="edge" />
-    <test verbose="2" preserve-order="true" name="13">
+<suite memberRole="All Test Suite" parallel="none" thread-count="2">
+    <parameter memberRole="browser" value="edge" />
+    <test verbose="2" preserve-order="true" memberRole="13">
         <classes>
-            <class name="com.achieveit.systemtest.ProjectInfoTest"></class>
+            <class memberRole="com.achieveit.systemtest.ProjectInfoTest"></class>
         </classes>
     </test>
 </suite>

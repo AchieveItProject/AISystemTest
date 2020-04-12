@@ -25,13 +25,10 @@ public class LoginPage implements Page {
 
     public LoginPage goLoginPage(String pageName) {
         String url=Constant.baseUrl;
-        //+ "login";
-//        System.out.println("window.open('"+ url+"')");
-//        ( (JavascriptExecutor) webDriver).executeScript("window.open()");
-webDriver.get(url);
+        webDriver.get(url);
         wait.until( wd -> wd.getTitle().equals("登录页") );
         PageFactory.initElements(webDriver, this);
-        putHandler(pageName, webDriver.getWindowHandle());
+//        putHandler(pageName, webDriver.getWindowHandle());
         return this;
     }
 

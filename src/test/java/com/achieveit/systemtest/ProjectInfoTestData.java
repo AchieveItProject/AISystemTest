@@ -68,7 +68,7 @@ public class ProjectInfoTestData {
         int itemCount = 1;
         Object[][] ret = new Object[itemCount][1];
         for (int i = 0; i < itemCount; i++) {
-            ret[i][0] = "36";
+            ret[i][0] = "29";
         }
         return ret;
     }

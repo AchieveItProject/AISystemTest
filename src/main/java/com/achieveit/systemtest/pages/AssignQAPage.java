@@ -63,9 +63,9 @@ public class AssignQAPage extends ProjectManagementPage {
         WebElement dialog= findAssignQADialog();
         setAllElements(dialog);
         if(expectedResult) {
-            assertThat(idInput.getText(), Is.is(input));
+            assertThat(idInput.getAttribute("value"), Is.is(input));
         }else{
-            assertThat(idInput.getText(), IsNot.not(input));
+            assertThat(idInput.getAttribute("value"), IsNot.not(input));
         }
         return this;
     }

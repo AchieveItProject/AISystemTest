@@ -1,20 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite for Chrome" parallel="tests" thread-count="2">
+<suite name="Suite for Chrome" parallel="none" thread-count="2">
     <parameter name="browser" value="chrome" />
-    <test verbose="2" preserve-order="true" name="12">
-
+    <test verbose="2" preserve-order="true" name="Function Test">
         <classes>
-            <!--<class name="com.achieveit.systemtest.LoginBasicTest"/>-->
-            <!--<class name="com.achieveit.systemtest.ProjectInfoTest"/>-->
-            <!--<class name="com.achieveit.systemtest.ProjectSearchTest"/>-->
-            <!--<class name="com.achieveit.systemtest.ProjectApproveTest"/>-->
-            <!--<class name="com.achieveit.systemtest.AchieveInfoTest"/>-->
-            <!--<class name="com.achieveit.systemtest.StatusTest"/>-->
             <class name="com.achieveit.systemtest.FunctionTest"/>
         </classes>
     </test>
-
-
-
+    <test verbose="2" preserve-order="true" name="Apply Dialogs">
+        <classes>
+            <class name="com.achieveit.systemtest.ApplyDialogsTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Login">
+        <classes>
+            <class name="com.achieveit.systemtest.LoginBasicTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Project Info">
+        <classes>
+            <class name="com.achieveit.systemtest.ProjectInfoTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Project Reject By Leader">
+        <classes>
+            <class name="com.achieveit.systemtest.ProjectRejectTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Project Search By Keyword">
+        <classes>
+            <class name="com.achieveit.systemtest.ProjectSearchTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Project Approval">
+        <classes>
+            <class name="com.achieveit.systemtest.ProjectApproveTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Achieve Test">
+        <classes>
+            <class name="com.achieveit.systemtest.AchieveInfoTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Status Test">
+        <classes>
+            <class name="com.achieveit.systemtest.StatusTest"/>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Member Test">
+        <classes>
+            <class name="com.achieveit.systemtest.MemberTest"/>
+        </classes>
+    </test>
 </suite>

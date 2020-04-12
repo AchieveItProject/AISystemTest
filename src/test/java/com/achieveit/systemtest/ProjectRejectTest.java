@@ -64,25 +64,41 @@ projectManagementPage.checkProjectInfoExists(this.projectInfo,true);
 
 
     }
-    @Test( priority = 2)
-    public void checkInfo(){
-        // 如果不批准，那么应该是没有可以点击的地方，如果有再这里补充
-
-
-        try {
-            projectManagementPage.clickModifyButton(0).modifyProjectName("aaa");
-        }catch(Exception e){
-            assertThat(e.getMessage(), IsNot.not(""));
-        }
-        assertThat("Should raise exception","Can not click", Is.is("Clickable"));
-        loginAsPM("fjm","123");
-        try {
-            projectManagementPage.clickModifyButton(0).modifyProjectName("aaa");
-        }catch(Exception e){
-            assertThat(e.getMessage(), IsNot.not(""));
-        }
-        assertThat("Should raise exception","Can not click", Is.is("Clickable"));
-
+    @Test(priority = 3)
+    public void checkLeaderRejectStatusProgressUnavailable() {
+        login("c", "123", "Leader");
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
+    }
+    @Test(priority = 3)
+    public void checkQARejectStatusProgressUnavailable() {
+        login("b", "123", "QA");
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
+    }
+    @Test(priority = 3)
+    public void checkCMRejectStatusProgressUnavailable() {
+        login("f", "123", "CM");
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
+    }
+    @Test(priority = 3)
+    public void checkEPGRejectStatusProgressUnavailable() {
+        login("a", "123", "EPG");
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
+    }
+    @Test(priority = 3)
+    public void checkMemberRejectStatusProgressUnavailable() {
+        login("e", "123" );
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
+    }
+    @Test(priority = 3)
+    public void checkPMRejectStatusProgressUnavailable() {
+        login("fjm", "123");
+        projectManagementPage = welcomePage.selectProjectManagementMenu();
+        projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("立即驳回")).get(1), false);
     }
 
     @AfterClass

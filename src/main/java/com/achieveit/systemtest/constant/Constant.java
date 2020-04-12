@@ -12,5 +12,6 @@ public class Constant {
 
 //    public static String baseTestUrl = "http://47.100.187.197:4445/wd/hub";
     public static String baseTestUrl="http://localhost:4445/wd/hub";
+    public static String downloadPath="D:\\Software Development Practice\\";
 
 }

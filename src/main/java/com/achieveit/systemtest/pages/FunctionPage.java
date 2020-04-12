@@ -1,6 +1,9 @@
 package com.achieveit.systemtest.pages;
 
+import com.achieveit.systemtest.constant.Constant;
 import com.achieveit.systemtest.entity.FunctionInfo;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.hamcrest.core.Is;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,11 +11,15 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import static com.achieveit.systemtest.drivers.DriverSingleton.pauseOperation;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 public class FunctionPage extends ProjectDetailPage {
     @FindBy(xpath = "/html/body/div[1]/div/section/section/section/section/main/div/div[1]/div/div/div/div/div[2]/div[2]/div[1]/div[2]/button")
@@ -96,7 +103,7 @@ public class FunctionPage extends ProjectDetailPage {
       if(isSubFunc){
           click=line.findElements(By.tagName("td")).get(3).findElement(By.tagName("div")).findElements(By.tagName("i")).get(1);
       }else{
-        click=  line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).findElements(By.tagName("i")).get(2);
+        click=  line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).findElements(By.tagName("i")).get(4);
       }
         Actions actions=new Actions(webDriver);
         actions.moveToElement(click).click().perform();
@@ -164,7 +171,7 @@ public class FunctionPage extends ProjectDetailPage {
                     findElements(By.tagName("i")).get(0);
         }else {
             e = line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).
-                    findElements(By.tagName("i")).get(1);
+                    findElements(By.tagName("i")).get(3);
         }
         Actions actions=new Actions(webDriver);
         actions.moveToElement(e).click().perform();
@@ -178,7 +185,7 @@ public class FunctionPage extends ProjectDetailPage {
                     findElements(By.tagName("i")).get(2);
         }else {
             e = line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).
-                    findElements(By.tagName("i")).get(3);
+                    findElements(By.tagName("i")).get(5);
         }
         Actions actions=new Actions(webDriver);
         actions.moveToElement(e).click().perform();
@@ -193,9 +200,103 @@ public class FunctionPage extends ProjectDetailPage {
     }
     public SubFunctionCreatePage   clickNewSubFuncButton(WebElement line){
         WebElement e= line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).
-                findElements(By.tagName("i")).get(0);
+                findElements(By.tagName("i")).get(2);
         Actions actions=new Actions(webDriver);
         actions.moveToElement(e).click().perform();
         return new SubFunctionCreatePage(this);
     }
+    File f;
+    public FunctionPage   clickDownloadFuncButton(WebElement line){
+        WebElement e= line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).
+                    findElements(By.tagName("i")).get(0);
+        String funcName= line.findElements(By.tagName("td")).get(2).findElement(By.tagName("div"))
+                .getText();
+        Actions actions=new Actions(webDriver);
+        actions.moveToElement(e).click().perform();
+        pauseOperation(3000);
+        f=new File(Constant.downloadPath+funcName+".xlsx");
+        return this;
+    }
+
+    public FunctionUploadPage   clickUploadButton(WebElement line){
+        WebElement e= line.findElements(By.tagName("td")).get(4).findElement(By.tagName("div")).
+                findElements(By.tagName("i")).get(1);
+
+        Actions actions=new Actions(webDriver);
+        actions.moveToElement(e).click().perform();
+
+        return new FunctionUploadPage( this);
+    }
+
+    public FunctionPage checkDownloadFile(WebElement mainFunc){
+        Workbook workbook=null;
+        try{
+            workbook=new XSSFWorkbook(f);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Sheet sheet=workbook.getSheetAt(0);
+        Map<Integer,List<String>  > data=new HashMap<>();
+//        int i=0;
+       FunctionPage mf= openDetailDialog(mainFunc);
+        for(Row row:sheet){
+            if(row.getRowNum()==0) continue;
+            else{
+                String funcName=row.getCell(0).getStringCellValue();
+                String funcPeople=row.getCell(1).getStringCellValue();
+                FunctionInfo fi=new FunctionInfo();
+                fi.setName(funcName);
+                fi.setPeople(funcPeople);
+               WebElement e= mf.selectSubFunctionListItem(line->translateFromSubLine(line).equals(fi));
+                assertThat(e,Is.is(notNullValue()));
+            }
+        }
+
+        return this;
+
+    }
+    public FunctionPage checkUploadFile(File file,WebElement mainFuncLine){
+        Workbook workbook=null;
+        try{
+            workbook=new XSSFWorkbook(file);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Sheet sheet=workbook.getSheetAt(0);
+        Map<Integer,List<String>  > data=new HashMap<>();
+        FunctionPage mf= openDetailDialog(mainFuncLine);
+        for(Row row:sheet){
+
+            if(row.getRowNum()==0) continue;
+            else{
+
+                String funcName=getCellContent(row.getCell(0));
+                String funcPeople=getCellContent(row.getCell(1));
+                FunctionInfo fi=new FunctionInfo();
+                fi.setName(funcName);
+                fi.setPeople(funcPeople);
+                WebElement e= mf.selectSubFunctionListItem(line->translateFromSubLine(line).equals(fi));
+                assertThat(e,Is.is(notNullValue()));
+            }
+        }
+
+        return this;
+
+    }
+
+    public String getCellContent(Cell cell){
+        CellType type = cell.getCellType();
+        String cellValue;
+        switch (type) {
+            case NUMERIC:
+                // . is special character in split, \. is replaced, and \ is special in String, \\ is replaced.
+                cellValue = String.valueOf(cell.getNumericCellValue()).split("\\.")[0];
+                break;
+            default:
+                cellValue =cell.getStringCellValue();
+        }
+        return cellValue;
+    }
+
+
 }

@@ -24,7 +24,7 @@ public class ApplyDialogsTest extends BaseTest {
 
     }
     ProjectInfo projectInfo;
-    @Test( dataProvider = "projectInfo", dataProviderClass = ProjectApproveTestData.class,priority = 1)
+    @Test( dataProvider = "projectInfo", dataProviderClass = ProjectInfoData.class,priority = 1)
     public void createProject(ProjectInfo projectInfo) {
         this.projectInfo=projectInfo;
         login("fjm","123");

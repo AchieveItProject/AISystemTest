@@ -46,7 +46,7 @@ public class ProjectInfoTest extends BaseTest {
     }
 
     // Besides, name there are many other to revise!
-    @Test(dataProvider = "randomProjectName", dataProviderClass = ProjectInfoTestData.class, enabled = false)
+    @Test(dataProvider = "randomProjectName", dataProviderClass = ProjectInfoTestData.class,enabled = false)
     public void modifyProjectName(String name) {
         ProjectEditDialogPage editProjectDialogPage = projectManagementPage.clickModifyButton(0);
         ProjectInfo cur = editProjectDialogPage.catchCurrentProjectInfo();
@@ -54,7 +54,7 @@ public class ProjectInfoTest extends BaseTest {
         cur.setProjectName(name);
         editProjectDialogPage.checkProjectInfo(cur, true);
     }
-    @Test(dataProvider = "randomProjectName", dataProviderClass = ProjectInfoTestData.class)
+    @Test(dataProvider = "randomProjectName", dataProviderClass = ProjectInfoTestData.class,enabled = false)
     public void modifyProjectNameButCancel(String name) {
         ProjectEditDialogPage editProjectDialogPage = projectManagementPage.clickModifyButton(0);
         ProjectInfo cur = editProjectDialogPage.catchCurrentProjectInfo();
@@ -62,7 +62,7 @@ public class ProjectInfoTest extends BaseTest {
         editProjectDialogPage.checkProjectInfo(cur, true);
     }
 
-    @Test(dataProvider = "deleteProjectId", dataProviderClass = ProjectInfoTestData.class, enabled = false,priority = 1)
+    @Test(dataProvider = "deleteProjectId", dataProviderClass = ProjectInfoTestData.class,priority = 9)
     public void deleteProjectButCancel(String id) {
         List<WebElement> matchLine = projectManagementPage.selectListItem((line, lineExt) -> line.findElements(By.tagName("td")).get(2)
                 .findElement(By.tagName("div")).getText().equals(id));
@@ -71,7 +71,7 @@ public class ProjectInfoTest extends BaseTest {
         projectManagementPage.checkProjectInfoExists(p, true);
     }
 
-    @Test(dataProvider = "deleteProjectId", dataProviderClass = ProjectInfoTestData.class, priority = 2)
+    @Test(dataProvider = "deleteProjectId", dataProviderClass = ProjectInfoTestData.class, priority = 10)
     public void deleteProject(String id) {
        List< WebElement> matchLine = projectManagementPage.selectListItem((line, lineExt) -> line.findElements(By.tagName("td")).get(2)
                 .findElement(By.tagName("div")).getText().equals(id));

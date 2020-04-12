@@ -77,7 +77,7 @@ public class StatusTest extends BaseTest {
         projectManagementPage = welcomePage.selectProjectManagementMenu();
         projectManagementPage.checkStatusButtonClickable(projectManagementPage.selectListItem((l, le) -> projectManagementPage.acquireStatusButton(le).getText().equals("已立项")).get(1), true);
     }
-    @Test(priority = 4)
+    @Test(priority = 4,enabled = false)
     public void checkCMApplyStatusApproveAvailable() {
         login("f", "123", "CM");
         projectManagementPage = welcomePage.selectProjectManagementMenu();

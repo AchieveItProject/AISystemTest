@@ -29,7 +29,7 @@ public class ProjectRejectTestData {
             String deliveryDate = sdf.format(delivery);
             String deliveryTime = time.format(delivery);
             ProjectInfo projectInfo = new ProjectInfo(faker.app().name(), "c", customerInfo,
-                    faker.gameOfThrones().house(), faker.matz().quote(), faker.gameOfThrones().house(),
+                    faker.gameOfThrones().house(), faker.matz().quote().substring(0,20), faker.gameOfThrones().house(),
                     field, scheduleDate+" "+ scheduleTime, deliveryDate+" "+deliveryTime);
             ret[i][0] = projectInfo;
         }

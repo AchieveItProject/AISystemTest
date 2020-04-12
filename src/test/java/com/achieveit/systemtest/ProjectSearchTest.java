@@ -44,7 +44,7 @@ public class ProjectSearchTest extends BaseTest{
     }
     @Test(dataProviderClass = ProjectSearchTestData.class,dataProvider = "idAndNameInList")
     public void searchByIdAndName(String id, String name){
-        projectManagementPage.clickSearchButtonToOpenSearchDialog().inputSearchId(id). inputSearchLeader(name).clickSubmitButton();
+        projectManagementPage.clickSearchButtonToOpenSearchDialog().inputSearchId(id). inputSearchName(name).clickSubmitButton();
         ProjectInfo pi=new ProjectInfo();
         pi.setProjectName(name);
         pi.setId(id);

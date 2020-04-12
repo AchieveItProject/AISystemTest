@@ -44,6 +44,6 @@ public class LoginBasicTest extends BaseTest {
 
   @AfterMethod
   public void pageDestroy() {
-    loginPage.closePage("loginPage");
+//    loginPage.closePage("loginPage");
   }
 }
